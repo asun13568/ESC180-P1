@@ -24,6 +24,8 @@ def simulate_activity(activity, duration):
     global over90
     global over90_list
     global good_battery_health
+    if activity not in ('charge', 'idle', 'use'):
+        return
     for i in range(duration):
         cur_time += 1
         if activity == 'charge':
@@ -65,7 +67,7 @@ def simulate_activity(activity, duration):
         elif activity == 'idle':
             cur_charge -= 0.5
             cur_temp -= 1
-        else:
+        elif activity == 'use':
             if cur_charge <= 0:
                 cur_temp -= 1
             else:
