@@ -36,7 +36,10 @@ def simulate_activity(activity, duration):
                         cur_charge += 1/3
                         cur_temp += 1/12
             elif not get_cur_battery_health():
-                cur_charge = min(80, cur_charge + 1)
+                if cur_charge > 80:
+                    cur_charge = min(90, cur_charge +1)
+                else:
+                    cur_charge = min(80, cur_charge + 1)
                 cur_temp += 0.25
             else:
                 if cur_charge == 90:
